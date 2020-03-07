@@ -5,6 +5,7 @@ const { globSource } = IpfsHttpClient;
 module.exports = {
   async upload({ host, port, protocol, path, timeout, verbose }) {
     const root = fsPath.basename(path);
+    if(verbose) console.log("root",root);
     const ipfs = IpfsHttpClient({ host, port, protocol, timeout });
     const source = await ipfs.add(globSource(path, { recursive: true }), { pin: true });
 
